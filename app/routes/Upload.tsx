@@ -103,7 +103,7 @@ const Upload = () => {
       console.log(data);
 
       setStatusText('Analysis complete! Redirecting...');
-      // navigate(`/result/${uuid}`);
+      navigate(`/resume/${uuid}`);
     } catch (err) {
       console.error(err);
       setStatusText('Failed to analyze the resume. Please try again.');
