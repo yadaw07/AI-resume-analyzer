@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
-import type { Route } from './+types/home';
+import type { Route } from './+types/Home';
 
 import ResumeCard from '~/components/ResumeCard';
 import Navbar from '~/components/Navbar';
@@ -72,6 +72,17 @@ export default function Home() {
             {resumes.map((resume) => (
               <ResumeCard key={resume.id} resume={resume} />
             ))}
+          </div>
+        )}
+
+        {!loadingResume && resumes.length > 0 && (
+          <div className='flex justify-center mt-6'>
+            <Link
+              to='/clear'
+              className='bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer'
+            >
+              Clear All Resumes
+            </Link>
           </div>
         )}
 
