@@ -56,7 +56,7 @@ const Resume = () => {
         const imageUrl = URL.createObjectURL(imageBlob);
         setImageUrl(imageUrl);
 
-        setFeedback(data.feedback);
+        setFeedback(data.feedback ?? null);
       } catch (error) {
         console.error('Error fetching resume data:', error);
       }
@@ -76,7 +76,7 @@ const Resume = () => {
         </Link>
       </nav>
       <div className='flex flex-row w-full max-lg:flex-col-reverse '>
-        <section className='feedback-section bg-[url(`/images/bg-small.svg`)] bg-cover h-screen sticky top-0 items-center justify-center'>
+        <section className="feedback-section bg-[url('/images/bg-small.svg') bg-cover h-[calc(100vh-122px)] sticky top-122px items-center justify-center">
           {imageUrl && resumeUrl && (
             <div className='animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-2xl:h-fit w-fit'>
               <a href={resumeUrl} target='_blank' rel='noopener noreferrer'>
@@ -95,8 +95,8 @@ const Resume = () => {
             <div className='flex flex-col gap-8 animate-in fade-in duration-1000'>
               <Summary feedback={feedback} />
               <ATS
-                score={feedback.ATS.score || 0}
-                suggestions={feedback.ATS.tips || []}
+                score={feedback.ATS?.score || 0}
+                suggestions={feedback.ATS?.tips || []}
               />
               <Details feedback={feedback} />
             </div>

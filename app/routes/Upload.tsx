@@ -34,9 +34,9 @@ const Upload = () => {
     jobDescription: string;
     file: File | null;
   }) => {
-    setIsProcessing(true);
-
     if (!file) return setStatusText('Please select a file first.');
+
+    setIsProcessing(true);
 
     const uploadedFile = await fs.upload([file]);
     setStatusText('Uploading the file...');
@@ -49,7 +49,6 @@ const Upload = () => {
 
     const imageFile = await convertPdfToImage(file);
     setStatusText('Converting to image ...');
-    console.log('imageFile', imageFile);
 
     if (!imageFile.file) {
       setStatusText('Failed to convert the PDF to image. Please try again.');
@@ -96,7 +95,10 @@ const Upload = () => {
           ? feedback.message.content
           : feedback.message.content[0].text;
 
-      data.feedback = feedbackText;
+      let parsedFeedback;
+      parsedFeedback = JSON.parse(feedbackText);
+
+      data.feedback = parsedFeedback;
 
       await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
