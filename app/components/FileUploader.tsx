@@ -21,7 +21,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
 
   const maxFileSize = 20 * 1024 * 1024; // 20 MB
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
     multiple: false,
     accept: { 'application/pdf': ['.pdf'] },
@@ -71,6 +71,14 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 (max {formatSize(maxFileSize)})
               </p>
             </div>
+          )}
+
+          {fileRejections.length > 0 && (
+            <p className='text-sm text-red-500 mt-2'>
+              {fileRejections[0].errors[0].code === 'file-invalid-type'
+                ? 'Only PDF files are accepted.'
+                : fileRejections[0].errors[0].message}
+            </p>
           )}
         </div>
       </div>

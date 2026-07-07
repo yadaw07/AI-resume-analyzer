@@ -102,8 +102,6 @@ const Upload = () => {
 
       await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
-      console.log(data);
-
       setStatusText('Analysis complete! Redirecting...');
       navigate(`/resume/${uuid}`);
     } catch (err) {
@@ -164,6 +162,7 @@ const Upload = () => {
                 id='company-name'
                 name='company-name'
                 placeholder='Company Name'
+                required
               />
             </div>
             <div className='form-div'>
@@ -173,6 +172,7 @@ const Upload = () => {
                 id='job-title'
                 name='job-title'
                 placeholder='Job Title'
+                required
               />
             </div>
             <div className='form-div'>
@@ -182,6 +182,7 @@ const Upload = () => {
                 id='job-description'
                 name='job-description'
                 placeholder='Job Description'
+                required
               />
             </div>
             <div className='form-div'>

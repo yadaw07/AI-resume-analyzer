@@ -1,87 +1,46 @@
-# Welcome to React Router!
+# Resumind
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+AI-powered resume analyzer that gives instant, actionable feedback on your resume against a target job description.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Upload a resume (PDF) and job description
+- AI-generated feedback on ATS compatibility, tone, content, structure, and skills
+- Visual scoring breakdown per category
+- Resume preview alongside feedback
+
+## Tech Stack
+
+- **React Router v7** — routing (SPA mode)
+- **TypeScript**
+- **Vite** — build tooling
+- **Tailwind CSS** — styling
+- **Puter.js** — client-side file storage, key-value store, and AI inference (no custom backend required)
 
 ## Getting Started
 
-### Installation
-
-Install the dependencies:
-
 ```bash
+# install dependencies
 npm install
-```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
+# run dev server
 npm run dev
-```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
+# build for production
 npm run build
 ```
 
 ## Deployment
 
-### Docker Deployment
+This project runs in SPA mode (`ssr: false`) since Puter.js handles everything client-side (auth, storage, AI). Deployed on Vercel with a rewrite rule (`vercel.json`) to support client-side routing.
 
-To build and run using Docker:
+## How It Works
 
-```bash
-docker build -t my-app .
+1. User uploads a resume (PDF) and pastes a job description
+2. Resume is converted to an image preview and stored via Puter
+3. Puter AI analyzes the resume against the job description
+4. Feedback is stored in Puter's KV store and rendered as structured scores + suggestions
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+## License
 
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+MIT
